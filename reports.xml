@@ -25,13 +25,6 @@
 									color: #F9F9F9;
 								}
 						</style>
-						<div class="row">
-							<div class="col-xs-5 col-xs-offset-7">
-								<strong><span t-field="o.partner_id"/></strong>
-								<address t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
-								<span t-field="o.partner_id.vat"/>
-							</div>
-						</div>
 
 						<h1 class="text-center abakusBordered">Contrat de services informatiques</h1>
 
