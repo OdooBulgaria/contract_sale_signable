@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report 
+			id="contract_abakus_signable"
+			string="Contract Signable"
+			model="account.analytic.account" 
+			report_type="qweb-pdf"
+			file="contract_sale_signable" 
+			name="contract_sale_signable.signable_contract"
+		/>
+       
+		<template id="signable_contract_document">
+			<t t-name="contract_sale_signable.signable_contract_document">
+				<t t-call="report.external_layout">
+					<div class="page">
+						<style type="text/css">
+								.abakusBordered {
+									border: 2px #F68B19 solid;
+									background-color: #F9F9F9;
+								}
+
+								.abakusBackground {
+									background-color: #F68B19;
+									color: #F9F9F9;
+								}
+						</style>
+						<div class="row">
+							<div class="col-xs-5 col-xs-offset-7">
+								<strong><span t-field="o.partner_id"/></strong>
+								<address t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
+								<span t-field="o.partner_id.vat"/>
+							</div>
+						</div>
+
+						<h1 class="text-center abakusBordered">Contrat de services informatiques</h1>
+
+						<!-- Schedules and travel costs -->
+						<h2>Tarifs horaires et déplacements</h2>
+
+						<table class="table abakusBordered">
+							<tr>
+								<th>Tarif horaire</th>
+								<th>Minimum par année</th>
+								<th>Facture d'acompte minimum par mois</th>
+								<th>SLA</th>
+							</tr>
+						</table>
+
+						<h2>Unités de facturation et temps de réaction (unité = 1 heure)</h2>
+
+						<table class="table abakusBordered">
+							<tr>
+								<th>Ticket</th>
+								<th colspan="2">Unités de facturation</th>
+								<th colspan="2">temps de réaction (SLA)</th>
+							</tr>
+							<tr>
+								<th></th>
+								<th>SD</th>
+								<th>OS</th>
+								<th>SD</th>
+								<th>OS</th>
+							</tr>
+						</table>
+
+						<p>
+							Ticket: Demande de support<br />
+							SD: Service desk accessible via tél +32 84 59 35 58 ou par email à l'adresse support@abakusitsolutions.eu<br />
+							OS: "On-Site" prestation sur site du client (sur rendez-vous)<br />
+							SLA: ...<br />
+						</p>
+
+						<h2>Accord (du <span t-field="o.date_start" />)</h2>
+
+						<p>
+							Tarif horaire : <span t-field="o.timesheet_product_price" /> <br /> <!-- type.product.timesheet_product.name -->
+							Déplacement : <span t-field="" /> <br />
+							
+						</p>
+					</div>
+				</t>
+			</t>
+		</template>
+       
+		<template id="signable_contract">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'contract_sale_signable.signable_contract_document')"/>
+                </t>
+            </t>
+        </template>
+	</data>
+</openerp>
+
