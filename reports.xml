@@ -33,85 +33,117 @@
 
 						<table class="table abakusBordered">
 							<tr>
+                                <th>Nom</th>
 								<th>Tarif horaire</th>
 								<th>Minimum par année</th>
 								<th>Facture d'acompte minimum par mois</th>
 								<th>SLA</th>
 							</tr>
+                            <t t-foreach="o.get_contract_type_products()" t-as="product">
+                                <tr>
+                                    <td><span t-esc="product['name']"/></td>
+                                    <td><span t-esc="product['price']"/></td>
+                                    <td>?</td>
+                                    <td>?</td>
+                                    <td>?</td>
+                                </tr>
+                            </t>      
+						</table>
+                        
+                        <table class="table abakusBordered">
+							<tr>
+                                <th>Nom</th>
+								<th>Tarif horaire</th>
+						    </tr>
+                            <t t-foreach="o.get_travel_products()" t-as="product">
+                                <tr>
+                                    <td><span t-esc="product['name']"/></td>
+                                    <td><span t-esc="product['price']"/></td>
+                                </tr>
+                            </t>      
 						</table>
 
 						<h2>Unités de facturation et temps de réaction (unité = 1 heure)</h2>
 
 						<table class="table abakusBordered">
 							<tr>
-								<th>Ticket</th>
-								<th colspan="2">Unités de facturation</th>
-								<th colspan="2">temps de réaction (SLA)</th>
+								<th>Nom</th>
+                                <th>Priorité</th>
+                                <th>État</th>
+                                <th>Type de service</th>
+                                <th>Type de temps</th>
+                                <th>Temps de réaction (min)</th>
+                                
 							</tr>
-							<tr>
-								<th></th>
-								<th>SD</th>
-								<th>OS</th>
-								<th>SD</th>
-								<th>OS</th>
-							</tr>
+							<t t-foreach="o.contract_type.sla_id.sla_rule_ids" t-as="rule">
+                                <tr>
+                                    <td><span t-field="rule.issue_priority" /></td>
+                                    <td><span t-field="rule.issue_priority" /></td>
+                                    <td><span t-field="rule.issue_stage" /></td>
+                                    <td><span t-field="rule.service_type" /></td>
+                                    <td><span t-field="rule.time_type" /></td>
+                                    <td><span t-field="rule.action_time" /></td>
+                                </tr>
+                            </t>    
 						</table>
-
-						<p>
-							<ul>
-								<li>Ticket: Demande de support</li>
-								<li>SD : Service desk accessible via tél +32 84 59 35 58 ou par email à l'adresse support@abakusitsolutions.eu</li>
-								<li>OS : "On-Site" prestation sur site du client (sur rendez-vous)</li>
-								<li>SLA : Service Level Agreement seulement en combinaison avec une Baseline (explication Baseline voir page 2)...</li>
-								<li>min : Temps minimum facturé</li>
-								<li>NBD : Next Business Day</li>
-								<li>Urgent : Une demande orale suffit</li>
-								<li>En dehors des heures de bureau : seulement pour des clients avec convention SLA ou sur rendez-vous. Sauf convention écrite contraire, le tarif en vigueur sera majoré de 150% et de 200% à partir de 22:00 ou le dimanche.</li>
-								<li>Temps de réaction (compliance: 85%) : 
-									<ul>
-										<li>SD : réaction par email ou téléphone</li>
-										<li>OD : technicien présent sur site</li>
-									</ul>
-									Les cnventions sur les temps ne valent que pour des clients avec SLA.
-								</li>
-								<li>Heures de bureau : lundi au vendredi de 8h30 à 17h30</li>
-							</ul>
-						</p>
+                        
+                        <ul>
+                            <li>Ticket: Demande de support</li>
+                            <li>SD : Service desk accessible via tél +32 84 59 35 58 ou par email à l'adresse support@abakusitsolutions.eu</li>
+                            <li>OS : "On-Site" prestation sur site du client (sur rendez-vous)</li>
+                            <li>SLA : Service Level Agreement seulement en combinaison avec une Baseline (explication Baseline voir page 2)...</li>
+                            <li>min : Temps minimum facturé</li>
+                            <li>NBD : Next Business Day</li>
+                            <li>Urgent : Une demande orale suffit</li>
+                            <li>En dehors des heures de bureau : seulement pour des clients avec convention SLA ou sur rendez-vous. Sauf convention écrite contraire, le tarif en vigueur sera majoré de 150% et de 200% à partir de 22:00 ou le dimanche.</li>
+                            <li>Temps de réaction (compliance: 85%) : 
+                                <ul>
+                                    <li>SD : réaction par email ou téléphone</li>
+                                    <li>OD : technicien présent sur site</li>
+                                </ul>
+                                Les cnventions sur les temps ne valent que pour des clients avec SLA.
+                            </li>
+                            <li>Heures de bureau : lundi au vendredi de 8h30 à 17h30</li>
+                        </ul>
 
 						<h2>Accord (du <span t-field="o.create_date" />)</h2>
-
+                        
 						<p>
-							Tarif horaire : <span t-field="o.timesheet_product_price" /> - 	Déplacement : <span t-field="o.on_site_product.sale_price" /> - Date de mise en service : <span t-field="o.date_start" /> <br />
-							Facture d'acompte <span t-field="o.recurring_invoice_line_ids[0].total" /> chaque <span t-field="o.recurring_interval" /> <span t-field="o.recurring_rule_type" /> - Baseline jusqu'au <span t-field="o.date_end" /> : XXX € <br />
+							Tarif horaire : <span t-field="o.timesheet_product_price" /> - 	Déplacement : <span t-field="o.on_site_product.lst_price" /> - Date de mise en service : <span t-field="o.date_start" /> <br />
+							Facture d'acompte <span t-field="o.recurring_invoice_line_ids[0].price_subtotal" /> chaque <span t-field="o.recurring_interval" /> <span t-field="o.recurring_rule_type" /> - Baseline jusqu'au <span t-field="o.date" /> : XXX € <br />
 							SLA : OUI / NON - Maintenance préventive : OUI / NON - Renouvellement automatique des licences : OUI / NON <br />
 						</p>
-
+                        
 						<!-- SIGN BOX -->
 						<table class="table">
 							<!-- Partners names -->
 							<tr>
 								<th><span t-field="o.partner_id" /></th> <!-- customer -->
-								<th><span t-field="company_id" /></th> <!-- company -->
+								<th><span t-field="o.company_id" /></th> <!-- company -->
 							</tr>
 							<!-- Partners address -->
 							<tr>
 								<td>
-									<address t-field="company_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
+                                    <address t-field="o.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
 								</td>
 								<td>
-									<address t-field="o.partner_id" t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
+                                    <address t-field="o.company_id.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
 								</td>
 							</tr>
 							<!-- Signatures -->
 							<tr>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </td>
 								<td>
 								</td>
-								<td>
-								</td>
-							</tr>
+                            </tr>
 							<!-- Names -->
 							<tr>
 								<td>
+                                    <br/>
 								</td>
 								<td>
 								</td>
@@ -132,4 +164,3 @@
         </template>
 	</data>
 </openerp>
-
