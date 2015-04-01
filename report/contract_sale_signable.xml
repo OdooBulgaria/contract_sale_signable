@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<report 
+			id="contract_abakus_signable"
+			string="Contract Signable"
+			model="account.analytic.account" 
+			report_type="qweb-pdf"
+			file="contract_sale_signable" 
+			name="contract_sale_signable.signable_contract"
+		/>
+       
+		<template id="signable_contract_document">
+			<t t-name="contract_sale_signable.signable_contract_document">
+				<t t-call="report.external_layout">
+					<div class="page">
+						<style type="text/css">
+								.abakusBordered {
+									border: 2px #F68B19 solid;
+									//background-color: #F9F9F9;
+								}
+
+								.abakusBackground {
+									background-color: #F68B19;
+									//color: #F9F9F9;
+								}
+						</style>
+
+						<h2 class="text-center abakusBordered">Contrat de services informatiques</h2>
+
+						<!-- Schedules and travel costs -->
+						<h3>Tarifs</h3>
+                       
+                        <table class="table table-condensed table-bordered">
+                            <tr class="abakusBordered">
+                                <th></th>
+                                <th>Tarif horaire</th>
+                                <th>Minimum par année</th>
+                                <th>Facture d'acompte minimum par mois</th>
+                                <th>SLA</th>
+                            </tr>
+                            <t t-set="classcontent">text-right</t>
+                            <t t-if="o.is_tariff(o.id,85,0)"><t t-set="classcontent">text-right abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td class="text-left">IT Comfort - No Baseline</td>
+                                <td>85.0 €</td>
+                                <td>Néant</td>
+                                <td>Néant</td>
+                                <td>Non</td>
+                            </tr>
+                            <t t-set="classcontent">text-right</t>
+                            <t t-if="o.is_tariff(o.id,85,5)"><t t-set="classcontent">text-right abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td class="text-left">IT Comfort - Baseline 5</td>
+                                <td>85.0 €</td>
+                                <td>5 heures</td>
+                                <td>1x par an 425 €</td>
+                                <td>Non</td>
+                            </tr> 
+                            <t t-set="classcontent">text-right</t>
+                            <t t-if="o.is_tariff(o.id,77.5,20)"><t t-set="classcontent">text-right abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td class="text-left">IT Comfort - Baseline 20</td>
+                                <td>77.5 €</td>
+                                <td>20 heures</td>
+                                <td>130 €</td>
+                                <td>Oui</td>
+                            </tr> 
+                            <t t-set="classcontent">text-right</t>
+                            <t t-if="o.is_tariff(o.id,72.5,50)"><t t-set="classcontent">text-right abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td class="text-left">IT Comfort - Baseline 50</td>
+                                <td>72.5 €</td>
+                                <td>50 heures</td>
+                                <td>300 €</td>
+                                <td>Oui</td>
+                            </tr> 
+                            <t t-set="classcontent">text-right</t>
+                            <t t-if="o.is_tariff(o.id,67.5,100)"><t t-set="classcontent">text-right abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td class="text-left">IT Comfort - Baseline 100</td>
+                                <td>67.5 €</td>
+                                <td>100 heures</td>
+                                <td>560 €</td>
+                                <td>Oui</td>
+                            </tr>
+                            <t t-set="classcontent">text-right</t>
+                            <t t-if="o.is_tariff(o.id,65.5,250)"><t t-set="classcontent">text-right abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td class="text-left">IT Comfort - Baseline 250</td>
+                                <td>62.5 €</td>
+                                <td>250 heures</td>
+                                <td>1300 €</td>
+                                <td>Oui</td>
+                            </tr>
+                        </table>
+                        <h3>Frais de déplacement</h3>
+                        <table class="table table-condensed table-bordered">
+                            <tr class="abakusBordered">
+                                <th style="width: 50%">Km (entre Abakus Eupen et le client)</th>
+                                <th style="width: 50%">Prix par déplacement</th>
+                            </tr>
+                            <t t-set="classcontent"></t>
+                            <t t-if="o.is_travel_cost(o.id,15)"><t t-set="classcontent">abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td>Moins de 10 km</td>
+                                <td>15 €</td>
+                            </tr> 
+                            <t t-set="classcontent"></t>
+                            <t t-if="o.is_travel_cost(o.id,25)"><t t-set="classcontent">abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td>Moins de 20 km</td>
+                                <td>25 €</td>
+                            </tr> 
+                            <t t-set="classcontent"></t>
+                            <t t-if="o.is_travel_cost(o.id,35)"><t t-set="classcontent">abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td>Moins de 50 km</td>
+                                <td>35 €</td>
+                            </tr> 
+                            <t t-set="classcontent"></t>
+                            <t t-if="o.is_travel_cost(o.id,45)"><t t-set="classcontent">abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td>Moins de 135 km</td>
+                                <td>45 €</td>
+                            </tr> 
+                            <t t-set="classcontent"></t>
+                            <t t-if="o.is_travel_cost(o.id,0)"><t t-set="classcontent">abakusBackground</t></t>
+                            <tr t-att="{ 'class' : classcontent }">
+                                <td>Plus de 135 km</td>
+                                <td>Sur devis</td>
+                            </tr> 
+                        </table>
+						
+                        <h3>Unités de facturation et temps de réaction (unité = 1 heure)</h3>
+
+						<table class="table table-condensed table-bordered">
+							<tr class="abakusBordered">
+								<th>Ticket</th>
+                                <th>Pas de SLA</th>
+                                <th style="background-color:#0BB000;">Normal</th>
+                                <th style="background-color:red;">Urgent</th>
+                                <th>En dehors des heures de bureau</th>
+							</tr>
+                            <tr>
+                                <td><strong>Temps de réaction (SLA)</strong></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> 
+                            <tr class="text-right">
+                                <td><strong>SD</strong></td>
+                                <td>Néant</td>
+                                <td>4</td>
+                                <td>1/2</td>
+                                <td>NBD</td>
+                            </tr>
+                            <tr class="text-right">
+                                <td><strong>OS</strong></td>
+                                <td>Néant</td>
+                                <td>NBD</td>
+                                <td>2</td>
+                                <td>NBD</td>                                
+                            </tr>
+                            <tr>
+                                <td><strong>Unité de facturation</strong></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> 
+                            <tr class="text-right">
+                                <td><strong>SD</strong></td>
+                                <td>1/4 (min=1)</td>
+                                <td>1/4 (min=1/4)</td>
+                                <td>1/4 (min=1)</td>
+                                <td>1 (min=1)</td>
+                            </tr>
+                            <tr class="text-right">
+                                <td><strong>OS</strong></td>
+                                <td>1/4 (min=1)</td>
+                                <td>1/4 (min=1/4)</td>
+                                <td>1 (min=2)</td>
+                                <td>1 (min=2)</td>                               
+                            </tr>
+                            
+						</table>
+                        <p style="page-break-after:always;"></p>
+                        <h3>Informations</h3>
+                        <table class="table table-condensed table-bordered">
+							<tr>
+								<th>Ticket</th>
+                                <td>Demande de support</td>
+							</tr>
+                            <tr>
+								<th>SD</th>
+                                <td>Service desk accessible via tél +32 84 59 35 58 ou par email à l'adresse support@abakusitsolutions.eu</td>
+							</tr>
+                            <tr>
+								<th>OS</th>
+                                <td>"On-Site" prestation sur site du client (sur rendez-vous)</td>
+							</tr>
+                            <tr>
+								<th>SLA</th>
+                                <td>Service Level Agreement seulement en combinaison avec une Baseline (explication Baseline voir page 2)...</td>
+							</tr>
+                            <tr>
+								<th>min</th>
+                                <td>Temps minimum facturé</td>
+							</tr>
+                            <tr>
+								<th>NBD</th>
+                                <td>Prochain jour ouvrable - Next Business Day</td>
+							</tr>
+                            <tr>
+								<th>Urgent</th>
+                                <td>Une demande orale suffit</td>
+							</tr>
+                            <tr>
+								<th>En dehors des heures de bureau</th>
+                                <td>Seulement pour des clients avec convention SLA ou sur rendez-vous. Sauf convention écrite contraire, le tarif en vigueur sera majoré de 150% et de 200% à partir de 22:00 ou le dimanche.</td>
+							</tr>
+                            <tr>
+								<th>Temps de réaction (compliance: 85%)</th>
+                                <td> SD : réaction par email ou téléphone<br/>
+                                    OD : technicien présent sur site<br/>
+                                    Les conventions sur les temps ne valent que pour des clients avec SLA.
+                                </td>
+							</tr>
+                            <tr>
+								<th>Heures de bureau</th>
+                                <td>Lundi au vendredi de 8h30 à 17h30</td>
+							</tr>
+                        </table>
+
+						<h3>Accord <small>du <span t-esc="o.get_date_from_string_format(o.agreement_date,'%Y-%m-%d','%d-%m-%Y')" /></small></h3>
+                        <table class="table table-condensed table-bordered">
+                            <tr class="abakusBordered">
+								<th>Tarif horaire</th>
+                                <th>Prix par déplacement</th>
+                                <th>Facturation d'acompte</th>
+                                <th>Date de mise en service</th>
+                                <th>Date d'expiration</th>
+							</tr>
+                            <tr>
+								<td><span t-field="o.timesheet_product_price" /> €</td>
+                                <td><span t-field="o.on_site_product.lst_price" /> €</td>
+                                <td><span t-field="o.recurring_invoice_line_ids[0].price_subtotal" /> € chaque <span t-field="o.recurring_interval" /> mois</td>
+                                <td><span t-esc="o.get_date_from_string_format(o.date_start,'%Y-%m-%d','%d-%m-%Y')" /></td>
+                                <td><span t-esc="o.get_date_from_string_format(o.date,'%Y-%m-%d','%d-%m-%Y')" /></td>
+							</tr>
+                        </table>
+                        <h4>Options</h4>
+                        <table class="table table-condensed table-bordered">
+                            <tr class="abakusBordered">
+								<th>SLA</th>
+                                <th>Maintenance préventive</th>
+                                <th>Renouvellement automatique des licences</th>
+                                <th>Monitoring</th>
+                                <th>Backup</th>
+							</tr>
+                            <tr>
+								<td><t t-if="o.sla_bool">Oui</t><t t-if="not o.sla_bool">Non</t></td>
+                                <td><t t-if="o.preventive_maintenance">Oui</t><t t-if="not o.preventive_maintenance">Non</t></td>
+                                <td><t t-if="o.automatic_reneval_of_license">Oui</t><t t-if="not o.automatic_reneval_of_license">Non</t></td>
+                                <td><t t-if="o.monitoring">Oui</t><t t-if="not o.monitoring">Non</t></td>
+                                <td><t t-if="o.backup">Oui</t><t t-if="not o.backup">Non</t></td>
+							</tr>
+                        </table>
+						          
+						<!-- SIGN BOX -->
+						<table class="table table-bordered">
+							<!-- Partners names -->
+							<tr>
+                                <th style="width: 50%"><span t-field="o.partner_id" /></th> <!-- customer -->
+								<th style="width: 50%"><span t-field="o.company_id" /></th> <!-- company -->
+							</tr>
+							<!-- Partners address -->
+							<tr>
+								<td>
+                                    <address t-field="o.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+								</td>
+								<td>
+                                    <address t-field="o.company_id.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+								</td>
+							</tr>
+							<!-- Signatures -->
+							<tr>
+                                <td>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </td>
+								<td>
+								</td>
+                            </tr>
+							<!-- Names -->
+							<tr>
+								<td>
+                                    <br/>
+								</td>
+								<td>
+								</td>
+							</tr>
+						</table>
+						<small>Nos conditions générales et les conditions particulières reprises en annexe, sont bien connues du client. Tous les prix s'entendent hors TVA.</small>
+					</div>
+				</t>
+			</t>
+		</template>
+       
+		<template id="signable_contract">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'contract_sale_signable.signable_contract_document')"/>
+                </t>
+            </t>
+        </template>
+	</data>
+</openerp>
+
