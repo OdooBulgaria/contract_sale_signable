@@ -26,124 +26,111 @@
 								}
 						</style>
 
-						<h2 class="text-center abakusBordered">Contrat de services informatiques</h2>
+						<h2 class="text-center abakusBordered">Service Contract - IT Services</h2>
+                        
+                        <div style="page-break-inside:avoid;">
+                            <h3>Rates</h3>
+                            <table class="table table-condensed table-bordered">
+                                <tr class="abakusBordered">
+                                    <th></th>
+                                    <th>Hourly rates</th>
+                                    <th>Minimum per year</th>
+                                    <th>Minimum down-payment per year</th>
+                                    <th>SLA</th>
+                                </tr>
+                                <t t-foreach="o.get_contract_type_products()" t-as="product">
+                                    <t t-set="classcontent">text-right</t>
+                                    <t t-if="o.is_tariff(o.id,product['product_id'])"><t t-set="classcontent">text-right abakusBackground</t></t>
+                                    <tr t-att="{ 'class' : classcontent }">
+                                        <td class="text-left"><span t-esc="product['name']"/></td>
+                                        <td><span t-esc="o.format_decimal_number(product['price'])"/> €</td>
+                                        <td>                                
+                                            <t t-if="product['yearly_minimum']==0">None</t>
+                                            <t t-if="product['yearly_minimum']&gt;0"><span t-esc="product['yearly_minimum']"/> Hours</t>
+                                        </td>
+                                        <td>
+                                            <t t-if="product['monthly_installment']==0">None</t>
+                                            <t t-if="product['monthly_installment']&lt;100 and product['monthly_installment']&gt;0">1x yearly <span t-esc="o.format_decimal_number(product['price']*product['yearly_minimum'])"/> €</t>
+                                            <t t-if="product['monthly_installment']&gt;100"><span t-esc="o.format_decimal_number(product['monthly_installment'])"/> €</t>
+                                        </td>
+                                        <td>
+                                            <t t-if="product['sla']">Yes</t>
+                                            <t t-if="not product['sla']">No</t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                        
+                        <div style="page-break-inside:avoid;">
+                            <h3>Travel expenses</h3>
+                            <table class="table table-condensed table-bordered">
+                                <tr class="abakusBordered">
+                                    <th style="width: 50%">Km (between AbAKUS Eupen and the client)</th>
+                                    <th style="width: 50%">Price per travel</th>
+                                </tr>
+                                <t t-foreach="o.get_travel_products()" t-as="product">
+                                    <t t-set="classcontent"></t>
+                                    <t t-set="is_travel_cost" t-value="o.is_travel_cost(o.id,product['product_id'])"/>
+                                    <t t-if="is_travel_cost"><t t-set="classcontent">abakusBackground</t></t>
+                                    <tr t-att="{ 'class' : classcontent }">
+                                        <t t-if="product['price']&gt;0">
+                                            <td>Less than <span t-esc="product['km']"/> Km</td>
+                                            <td><span t-esc="o.format_decimal_number(product['price'])"/> €</td>
+                                        </t>
+                                        <t t-if="product['price']==-1">
+                                            <td>More than 135 Km</td>
+                                            <t t-if="not is_travel_cost">
+                                                <td>On estimate</td>
+                                            </t>
+                                            <t t-if="is_travel_cost">
+                                                <td><span t-esc="o.format_decimal_number(o.on_site_product_price)"/> €</td>
+                                            </t>
+                                        </t>
+                                    </tr> 
+                                </t>
+                            </table>
+                        </div>
 
-						<!-- Schedules and travel costs -->
-						<h3>Tarifs</h3>
-                       
-                        <table class="table table-condensed table-bordered">
-                            <tr class="abakusBordered">
-                                <th></th>
-                                <th>Tarif horaire</th>
-                                <th>Minimum par année</th>
-                                <th>Facture d'acompte minimum par mois</th>
-                                <th>SLA</th>
-                            </tr>
-                            <t t-set="classcontent">text-right</t>
-                            <t t-if="o.is_tariff(o.id,85,0)"><t t-set="classcontent">text-right abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td class="text-left">IT Comfort - No Baseline</td>
-                                <td>85.0 €</td>
-                                <td>Néant</td>
-                                <td>Néant</td>
-                                <td>Non</td>
-                            </tr>
-                            <t t-set="classcontent">text-right</t>
-                            <t t-if="o.is_tariff(o.id,85,5)"><t t-set="classcontent">text-right abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td class="text-left">IT Comfort - Baseline 5</td>
-                                <td>85.0 €</td>
-                                <td>5 heures</td>
-                                <td>1x par an 425 €</td>
-                                <td>Non</td>
-                            </tr> 
-                            <t t-set="classcontent">text-right</t>
-                            <t t-if="o.is_tariff(o.id,77.5,20)"><t t-set="classcontent">text-right abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td class="text-left">IT Comfort - Baseline 20</td>
-                                <td>77.5 €</td>
-                                <td>20 heures</td>
-                                <td>130 €</td>
-                                <td>Oui</td>
-                            </tr> 
-                            <t t-set="classcontent">text-right</t>
-                            <t t-if="o.is_tariff(o.id,72.5,50)"><t t-set="classcontent">text-right abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td class="text-left">IT Comfort - Baseline 50</td>
-                                <td>72.5 €</td>
-                                <td>50 heures</td>
-                                <td>300 €</td>
-                                <td>Oui</td>
-                            </tr> 
-                            <t t-set="classcontent">text-right</t>
-                            <t t-if="o.is_tariff(o.id,67.5,100)"><t t-set="classcontent">text-right abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td class="text-left">IT Comfort - Baseline 100</td>
-                                <td>67.5 €</td>
-                                <td>100 heures</td>
-                                <td>560 €</td>
-                                <td>Oui</td>
-                            </tr>
-                            <t t-set="classcontent">text-right</t>
-                            <t t-if="o.is_tariff(o.id,65.5,250)"><t t-set="classcontent">text-right abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td class="text-left">IT Comfort - Baseline 250</td>
-                                <td>62.5 €</td>
-                                <td>250 heures</td>
-                                <td>1300 €</td>
-                                <td>Oui</td>
-                            </tr>
-                        </table>
-                        <h3>Frais de déplacement</h3>
-                        <table class="table table-condensed table-bordered">
-                            <tr class="abakusBordered">
-                                <th style="width: 50%">Km (entre Abakus Eupen et le client)</th>
-                                <th style="width: 50%">Prix par déplacement</th>
-                            </tr>
-                            <t t-set="classcontent"></t>
-                            <t t-if="o.is_travel_cost(o.id,15)"><t t-set="classcontent">abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td>Moins de 10 km</td>
-                                <td>15 €</td>
-                            </tr> 
-                            <t t-set="classcontent"></t>
-                            <t t-if="o.is_travel_cost(o.id,25)"><t t-set="classcontent">abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td>Moins de 20 km</td>
-                                <td>25 €</td>
-                            </tr> 
-                            <t t-set="classcontent"></t>
-                            <t t-if="o.is_travel_cost(o.id,35)"><t t-set="classcontent">abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td>Moins de 50 km</td>
-                                <td>35 €</td>
-                            </tr> 
-                            <t t-set="classcontent"></t>
-                            <t t-if="o.is_travel_cost(o.id,45)"><t t-set="classcontent">abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td>Moins de 135 km</td>
-                                <td>45 €</td>
-                            </tr> 
-                            <t t-set="classcontent"></t>
-                            <t t-if="o.is_travel_cost(o.id,0)"><t t-set="classcontent">abakusBackground</t></t>
-                            <tr t-att="{ 'class' : classcontent }">
-                                <td>Plus de 135 km</td>
-                                <td>Sur devis</td>
-                            </tr> 
-                        </table>
-						
-                        <h3>Unités de facturation et temps de réaction (unité = 1 heure)</h3>
+                        <div style="page-break-inside:avoid;">
+                            <h3>Invoicing unit</h3>
+                            <table class="table table-condensed table-bordered">
+                                <tr class="abakusBordered">
+                                    <th>Ticket</th>
+                                    <th>Item outside SLA</th>
+                                    <th style="background-color:#0BB000;">Normal</th>
+                                    <th style="background-color:red;">Urgent</th>
+                                    <th>Outside of business hours</th>
+                                </tr> 
+                                <tr class="text-right">
+                                    <td><strong>SD</strong></td>
+                                    <td>1/4 (min=1)</td>
+                                    <td>1/4 (min=1/4)</td>
+                                    <td>1/4 (min=1)</td>
+                                    <td>1 (min=1)</td>
+                                </tr>
+                                <tr class="text-right">
+                                    <td><strong>OS</strong></td>
+                                    <td>1/4 (min=1)</td>
+                                    <td>1/4 (min=1/4)</td>
+                                    <td>1 (min=2)</td>
+                                    <td>1 (min=2)</td>                               
+                                </tr>
+                            </table>
+                        </div>
 
+                        <!--
+                        <h3>Invoicing unit and reaction time (unit = hour)</h3>
 						<table class="table table-condensed table-bordered">
 							<tr class="abakusBordered">
 								<th>Ticket</th>
-                                <th>Pas de SLA</th>
+                                <th>Item outside SLA</th>
                                 <th style="background-color:#0BB000;">Normal</th>
                                 <th style="background-color:red;">Urgent</th>
-                                <th>En dehors des heures de bureau</th>
+                                <th>Outside of business hours</th>
 							</tr>
                             <tr>
-                                <td><strong>Temps de réaction (SLA)</strong></td>
+                                <td><strong>Reaction time (SLA)</strong></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -151,20 +138,20 @@
                             </tr> 
                             <tr class="text-right">
                                 <td><strong>SD</strong></td>
-                                <td>Néant</td>
+                                <td>None</td>
                                 <td>4</td>
                                 <td>1/2</td>
                                 <td>NBD</td>
                             </tr>
                             <tr class="text-right">
                                 <td><strong>OS</strong></td>
-                                <td>Néant</td>
+                                <td>None</td>
                                 <td>NBD</td>
                                 <td>2</td>
                                 <td>NBD</td>                                
                             </tr>
                             <tr>
-                                <td><strong>Unité de facturation</strong></td>
+                                <td><strong>Invoicing units</strong></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -184,128 +171,174 @@
                                 <td>1 (min=2)</td>
                                 <td>1 (min=2)</td>                               
                             </tr>
-                            
 						</table>
-                        <p style="page-break-after:always;"></p>
-                        <h3>Informations</h3>
-                        <table class="table table-condensed table-bordered">
-							<tr>
-								<th>Ticket</th>
-                                <td>Demande de support</td>
-							</tr>
-                            <tr>
-								<th>SD</th>
-                                <td>Service desk accessible via tél +32 84 59 35 58 ou par email à l'adresse support@abakusitsolutions.eu</td>
-							</tr>
-                            <tr>
-								<th>OS</th>
-                                <td>"On-Site" prestation sur site du client (sur rendez-vous)</td>
-							</tr>
-                            <tr>
-								<th>SLA</th>
-                                <td>Service Level Agreement seulement en combinaison avec une Baseline (explication Baseline voir page 2)...</td>
-							</tr>
-                            <tr>
-								<th>min</th>
-                                <td>Temps minimum facturé</td>
-							</tr>
-                            <tr>
-								<th>NBD</th>
-                                <td>Prochain jour ouvrable - Next Business Day</td>
-							</tr>
-                            <tr>
-								<th>Urgent</th>
-                                <td>Une demande orale suffit</td>
-							</tr>
-                            <tr>
-								<th>En dehors des heures de bureau</th>
-                                <td>Seulement pour des clients avec convention SLA ou sur rendez-vous. Sauf convention écrite contraire, le tarif en vigueur sera majoré de 150% et de 200% à partir de 22:00 ou le dimanche.</td>
-							</tr>
-                            <tr>
-								<th>Temps de réaction (compliance: 85%)</th>
-                                <td> SD : réaction par email ou téléphone<br/>
-                                    OD : technicien présent sur site<br/>
-                                    Les conventions sur les temps ne valent que pour des clients avec SLA.
-                                </td>
-							</tr>
-                            <tr>
-								<th>Heures de bureau</th>
-                                <td>Lundi au vendredi de 8h30 à 17h30</td>
-							</tr>
-                        </table>
-
-						<h3>Accord <small>du <span t-esc="o.get_date_from_string_format(o.agreement_date,'%Y-%m-%d','%d-%m-%Y')" /></small></h3>
-                        <table class="table table-condensed table-bordered">
-                            <tr class="abakusBordered">
-								<th>Tarif horaire</th>
-                                <th>Prix par déplacement</th>
-                                <th>Facturation d'acompte</th>
-                                <th>Date de mise en service</th>
-                                <th>Date d'expiration</th>
-							</tr>
-                            <tr>
-								<td><span t-field="o.timesheet_product_price" /> €</td>
-                                <td><span t-field="o.on_site_product.lst_price" /> €</td>
-                                <td><span t-field="o.recurring_invoice_line_ids[0].price_subtotal" /> € chaque <span t-field="o.recurring_interval" /> mois</td>
-                                <td><span t-esc="o.get_date_from_string_format(o.date_start,'%Y-%m-%d','%d-%m-%Y')" /></td>
-                                <td><span t-esc="o.get_date_from_string_format(o.date,'%Y-%m-%d','%d-%m-%Y')" /></td>
-							</tr>
-                        </table>
-                        <h4>Options</h4>
-                        <table class="table table-condensed table-bordered">
-                            <tr class="abakusBordered">
-								<th>SLA</th>
-                                <th>Maintenance préventive</th>
-                                <th>Renouvellement automatique des licences</th>
-                                <th>Monitoring</th>
-                                <th>Backup</th>
-							</tr>
-                            <tr>
-								<td><t t-if="o.sla_bool">Oui</t><t t-if="not o.sla_bool">Non</t></td>
-                                <td><t t-if="o.preventive_maintenance">Oui</t><t t-if="not o.preventive_maintenance">Non</t></td>
-                                <td><t t-if="o.automatic_reneval_of_license">Oui</t><t t-if="not o.automatic_reneval_of_license">Non</t></td>
-                                <td><t t-if="o.monitoring">Oui</t><t t-if="not o.monitoring">Non</t></td>
-                                <td><t t-if="o.backup">Oui</t><t t-if="not o.backup">Non</t></td>
-							</tr>
-                        </table>
-						          
-						<!-- SIGN BOX -->
-						<table class="table table-bordered">
-							<!-- Partners names -->
-							<tr>
-                                <th style="width: 50%"><span t-field="o.partner_id" /></th> <!-- customer -->
-								<th style="width: 50%"><span t-field="o.company_id" /></th> <!-- company -->
-							</tr>
-							<!-- Partners address -->
-							<tr>
-								<td>
-                                    <address t-field="o.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
-								</td>
-								<td>
-                                    <address t-field="o.company_id.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
-								</td>
-							</tr>
-							<!-- Signatures -->
-							<tr>
-                                <td>
-                                    <br/>
-                                    <br/>
-                                    <br/>
-                                </td>
-								<td>
-								</td>
-                            </tr>
-							<!-- Names -->
-							<tr>
-								<td>
-                                    <br/>
-								</td>
-								<td>
-								</td>
-							</tr>
-						</table>
-						<small>Nos conditions générales et les conditions particulières reprises en annexe, sont bien connues du client. Tous les prix s'entendent hors TVA.</small>
-					</div>
+                        -->
+                     
+                        <t t-if="o.sla_bool">                                  
+                            <div style="page-break-inside:avoid;">
+                                <h3>Reaction time (SLA)</h3>
+                                <table class="table table-condensed table-bordered">
+                                 <tr class="abakusBordered">
+                                     <th style="width: 33%">Service type</th>
+                                     <th style="width: 33%">Priority</th>
+                                     <th style="width: 33%">Reaction time in minutes</th>
+                                 </tr>
+                                 <t t-foreach="o.sla_id.sla_rule_ids" t-as="rule">
+                                     <tr>
+                                        <td class="text-uppercase"><span t-esc="rule.service_type"/></td>
+                                         <td>
+                                             <t t-if="rule.issue_priority == '0'">Low</t>
+                                             <t t-if="rule.issue_priority == '1'">Normal</t>
+                                             <t t-if="rule.issue_priority == '2'">Urgent</t>
+                                         </td>
+                                         <td><span t-esc="rule.action_time"/></td>
+                                     </tr>
+                                 </t>
+                                </table>
+                            </div>
+                        </t>
+                        
+                        <div style="page-break-inside:avoid;">
+                            <h3>Information</h3>
+                            <table class="table table-condensed table-bordered">
+                                <tr>
+                                    <th>Ticket</th>
+                                    <td>Request for support</td>
+                                </tr>
+                                <tr>
+                                    <th>SD</th>
+                                    <td>Service Desk / +32.87 59 35 58 or per Email at support@abakusitsolutions.eu</td>
+                                </tr>
+                                <tr>
+                                    <th>OS</th>
+                                    <td>"On-Site" on site intervention / appointment</td>
+                                </tr>
+                                <tr>
+                                    <th>SLA</th>
+                                    <td>Service Level Agreement</td>
+                                </tr>                                
+                                <tr>
+                                    <th>min</th>
+                                    <td>Minimum time invoiced per intervention</td>
+                                </tr>
+                                <tr>
+                                    <th>NBD</th>
+                                    <td>Next Business Day</td>
+                                </tr>
+                                <tr>
+                                    <th>Urgent</th>
+                                    <td>Oral order is sufficient</td>
+                                </tr>
+                                <tr>
+                                    <th>Outside business hours</th>
+                                    <td>Only for customers with SLA or on appointment. Except otherwise agreed in writing, applicable rates are increased by 150% after 10 PM and 200% on Sundays.</td>
+                                </tr>
+                                <tr>
+                                    <th>Reaction time (compliance: 85%)</th>
+                                    <td>SD : per email or per telephone<br/>
+                                        OD : technician on site<br/>
+                                        Agreement on reaction time applies only for customers with an SLA.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Office hours</th>
+                                    <td>Monday to Friday from 8:30 a.m. to 5:30 p.m.</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div style="page-break-inside:avoid;">
+                            <h3>Agreement <small>from <span t-esc="o.get_date_from_string_format(o.agreement_date,'%Y-%m-%d','%d-%m-%Y')" /></small></h3>
+                            <table class="table table-condensed table-bordered">
+                                <tr class="abakusBordered">
+                                    <th>Hourly rate</th>
+                                    <th>Price by displacement</th>
+                                    <th>Billing down payment</th>
+                                    <th>Contract starting date</th>
+                                    <th>Contract expiration date</th>
+                                </tr>
+                                <tr>
+                                    <td><span t-esc="o.format_decimal_number(o.timesheet_product_price)" /> €</td>
+                                    <td><span t-esc="o.format_decimal_number(o.on_site_product_price)" /> €</td>
+                                    
+                                    <t t-set="recurring_type"></t>
+                                    <t t-if="o.recurring_rule_type == 'daily'"><t t-set="recurring_type">day(s)</t></t>
+                                    <t t-if="o.recurring_rule_type == 'weekly'"><t t-set="recurring_type">week(s)</t></t>
+                                    <t t-if="o.recurring_rule_type == 'monthly'"><t t-set="recurring_type">month(s)</t></t>
+                                    <t t-if="o.recurring_rule_type == 'yearly'"><t t-set="recurring_type">year(s)</t></t>
+                                    
+                                    <td><span t-esc="o.format_decimal_number(o.recurring_invoice_line_ids[0].price_subtotal)" /> € every <span t-field="o.recurring_interval" /> <span t-esc="recurring_type"/></td>
+                                    <td><span t-esc="o.get_date_from_string_format(o.date_start,'%Y-%m-%d','%d-%m-%Y')" /></td>
+                                    <td><span t-esc="o.get_date_from_string_format(o.date,'%Y-%m-%d','%d-%m-%Y')" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div style="page-break-inside:avoid;">
+                            <h4>Options</h4>
+                            <table class="table table-condensed table-bordered">
+                                <tr class="abakusBordered">
+                                    <th>SLA</th>
+                                    <th>Preventive maintenance</th>
+                                    <th>Automatic renewal of licenses</th>
+                                    <th>Monitoring</th>
+                                    <th>Backup</th>
+                                </tr>
+                                <tr>
+                                    <td><t t-if="o.sla_bool">Yes</t><t t-if="not o.sla_bool">No</t></td>
+                                    <td><t t-if="o.preventive_maintenance">Yes</t><t t-if="not o.preventive_maintenance">No</t></td>
+                                    <td><t t-if="o.automatic_reneval_of_license">Yes</t><t t-if="not o.automatic_reneval_of_license">No</t></td>
+                                    <td><t t-if="o.monitoring">Yes</t><t t-if="not o.monitoring">No</t></td>
+                                    <td><t t-if="o.backup">Yes</t><t t-if="not o.backup">No</t></td>
+                                </tr>
+                            </table>
+                        </div>
+						
+                        <div style="page-break-inside:avoid;">
+                            <!-- SIGN BOX -->
+                            <table class="table table-bordered">
+                                <!-- Partners names -->
+                                <tr>
+                                    <th style="width: 50%"><span t-field="o.partner_id" /></th> <!-- customer -->
+                                    <th style="width: 50%"><span t-field="o.company_id" /></th> <!-- company -->
+                                </tr>
+                                <!-- Partners address -->
+                                <tr>
+                                    <td>
+                                        <address t-field="o.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                                    </td>
+                                    <td>
+                                        <address t-field="o.company_id.partner_id" t-field-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                                    </td>
+                                </tr>
+                                <!-- Signatures -->
+                                <tr>
+                                    <td><small style="color:grey;">Signature and date</small>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <!-- Names -->
+                                <tr>
+                                    <td><small style="color:grey;">Name</small>
+                                        <br/>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </table>
+                            <small>Our general terms and conditions are attached and are considered well known by the customer. All our prices are VAT excluded.</small>
+                        </div>
+                        
+                        <!-- Special conditions -->
+                        <div style="page-break-inside:avoid; text-align: justify;">
+                            <t t-call="contract_sale_signable.contract_conditions"/>
+                        </div>
+                        
+                    </div>
 				</t>
 			</t>
 		</template>

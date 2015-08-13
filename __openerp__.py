@@ -1,7 +1,7 @@
 ﻿{
     'name': "AbAKUS signable contract",
     'version': '1.0',
-    'depends': ['sale', 'report', 'contract_timesheet_activities_on_site_management', 'account_analytic_account_improvements', 'sla'],
+    'depends': ['sale', 'report', 'contract_timesheet_activities_on_site_management', 'account_analytic_account_improvements', 'sla', 'contract_report'],
     'author': "Bernard DELHEZ, AbAKUS it-solutions SARL",
     'website': "http://www.abakusitsolutions.eu",
     'category': 'Contract',
@@ -13,6 +13,7 @@
     """,
     'data': [
         'report/contract_sale_signable.xml',
+        'report/contract_conditions.xml',
         'view/account_analytic_account_view.xml'
             ],
 }
