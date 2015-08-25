@@ -6,7 +6,7 @@
             <field name="model">account.analytic.account</field>
             <field name="inherit_id" ref="account_analytic_account_improvements.account_analytic_account_improvements"/>
             <field name="arch" type="xml">
-                <field name="on_site_product_price" position="after">
+                <field name="on_site_distance_in_km" position="after">
                     <field name="preventive_maintenance"/>
                     <field name="automatic_reneval_of_license"/>
                     <field name="monitoring"/>

@@ -104,7 +104,7 @@ class account_analytic_account_signable(models.Model):
                 else:
                     product_dict = {
                         'km' : 999,
-                        'price' : -1,
+                        'price' : product.lst_price,
                         'product_id': product.id,
                         }                
                     products.append(product_dict)

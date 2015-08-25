@@ -9,7 +9,7 @@
 			file="contract_sale_signable" 
 			name="contract_sale_signable.signable_contract"
 		/>
-       
+        
 		<template id="signable_contract_document">
 			<t t-name="contract_sale_signable.signable_contract_document">
 				<t t-call="report.external_layout">
@@ -69,22 +69,24 @@
                                     <th style="width: 50%">Km (between AbAKUS Eupen and the client)</th>
                                     <th style="width: 50%">Price per travel</th>
                                 </tr>
+                                <t t-set="travel_cost" t-value="0"/>
                                 <t t-foreach="o.get_travel_products()" t-as="product">
                                     <t t-set="classcontent"></t>
                                     <t t-set="is_travel_cost" t-value="o.is_travel_cost(o.id,product['product_id'])"/>
-                                    <t t-if="is_travel_cost"><t t-set="classcontent">abakusBackground</t></t>
+                                    <t t-if="is_travel_cost"><t t-set="classcontent">abakusBackground</t><t t-set="travel_cost" t-value="product['price']"/></t>
                                     <tr t-att="{ 'class' : classcontent }">
                                         <t t-if="product['price']&gt;0">
                                             <td>Less than <span t-esc="product['km']"/> Km</td>
                                             <td><span t-esc="o.format_decimal_number(product['price'])"/> €</td>
                                         </t>
-                                        <t t-if="product['price']==-1">
+                                        <t t-if="product['km']==999">
                                             <td>More than 135 Km</td>
                                             <t t-if="not is_travel_cost">
                                                 <td>On estimate</td>
                                             </t>
                                             <t t-if="is_travel_cost">
-                                                <td><span t-esc="o.format_decimal_number(o.on_site_product_price)"/> €</td>
+                                                <t t-set="travel_cost" t-value="o.on_site_product.lst_price*o.on_site_distance_in_km"/>
+                                                <td><span t-esc="o.format_decimal_number(travel_cost)"/> €</td>
                                             </t>
                                         </t>
                                     </tr> 
@@ -259,7 +261,7 @@
                                 </tr>
                                 <tr>
                                     <td><span t-esc="o.format_decimal_number(o.timesheet_product_price)" /> €</td>
-                                    <td><span t-esc="o.format_decimal_number(o.on_site_product_price)" /> €</td>
+                                    <td><span t-esc="o.format_decimal_number(travel_cost)" /> €</td>
                                     
                                     <t t-set="recurring_type"></t>
                                     <t t-if="o.recurring_rule_type == 'daily'"><t t-set="recurring_type">day(s)</t></t>
