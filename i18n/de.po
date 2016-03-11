@@ -209,7 +209,7 @@ msgstr "Mindestbetrag pro Jahr"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Minimum time invoiced per intervention"
-msgstr "Mindestzeit, die per Intervention berechnet wird "
+msgstr "Mindestzeit, die per Intervention berechnet wird"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -275,7 +275,7 @@ msgstr "Einstellungen"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Oral order is sufficient"
-msgstr "eine mündliche Auftragsanfrage genügt "
+msgstr "eine mündliche Auftragsanfrage genügt"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -300,7 +300,7 @@ msgstr "Payment - adjustment of prices - termination times"
 #. module: contract_sale_signable
 #: field:account.analytic.account,preventive_maintenance:0
 msgid "Preventive Maintenance"
-msgstr " präventive Instandhaltung "
+msgstr " präventive Instandhaltung"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
