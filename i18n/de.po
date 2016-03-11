@@ -43,7 +43,7 @@ msgstr "1/4 (min=1/4)"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "1x yearly"
-msgstr "1x yearly"
+msgstr "1x pro Jahr"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -53,17 +53,17 @@ msgstr "je nach Dringlichkeit und Art von Intervention (vor Ort oder per Fernort
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Agreement"
-msgstr "Agreement"
+msgstr "Vereinbarung"
 
 #. module: contract_sale_signable
 #: field:account.analytic.account,agreement_date:0
 msgid "Agreement date"
-msgstr "Agreement date"
+msgstr "Vereinbarungsdatum”
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Agreement on reaction time applies only for customers with an SLA."
-msgstr "Agreement on reaction time applies only for customers with an SLA."
+msgstr "die Vereinbarung bezüglich der Reaktionszeit gilt alleine für die Kunden mit SLA"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
@@ -78,28 +78,28 @@ msgstr "Kostenstellenkonto"
 #. module: contract_sale_signable
 #: field:account.analytic.account,automatic_reneval_of_license:0
 msgid "Automatic reneval of license"
-msgstr "Automatic reneval of license"
+msgstr "automatische Erneuerung der Linzenzen"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Automatic renewal of licenses"
-msgstr "Automatic renewal of licenses"
+msgstr "utomatische Erneuerung der Linzenzen"
 
 #. module: contract_sale_signable
 #: field:account.analytic.account,backup:0
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Backup"
-msgstr "Backup"
+msgstr "Absicherung"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
 msgid "Baseline and down-payment invoices"
-msgstr "Baseline and down-payment invoices"
+msgstr "Baseline und Anzahlungsrechnung"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Billing down payment"
-msgstr "Billing down payment"
+msgstr "Anzahlungsrechnung"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -109,7 +109,7 @@ msgstr "Vertrag"
 #. module: contract_sale_signable
 #: model:ir.actions.report.xml,name:contract_sale_signable.contract_conditions_report
 msgid "Contract Conditions"
-msgstr "Contract Conditions"
+msgstr "Vertragsbedingungen"
 
 #. module: contract_sale_signable
 #: model:ir.actions.report.xml,name:contract_sale_signable.contract_abakus_signable
@@ -119,12 +119,12 @@ msgstr "Contract Signable"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Contract expiration date"
-msgstr "Contract expiration date"
+msgstr "Verfallsdatum des Vertrags"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Contract starting date"
-msgstr "Contract starting date"
+msgstr "Beginn des Vertrags"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -134,32 +134,32 @@ msgstr "Kunde"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
 msgid "Data privacy"
-msgstr "Data privacy"
+msgstr "Datenschutz"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Estimation"
-msgstr "Estimation"
+msgstr "Berechnung"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
 msgid "Extract of general terms and conditions - http://www.abakusitsolutions.eu"
-msgstr "Extract of general terms and conditions - http://www.abakusitsolutions.eu"
+msgstr "Auszug aus den AGB - http://www.abakusitsolutions.eu"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Hourly rate"
-msgstr "Hourly rate"
+msgstr "Stundentarif"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Hourly rates"
-msgstr "Hourly rates"
+msgstr "Stundentarife"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Hours"
-msgstr "Hours"
+msgstr "Stunden"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -169,22 +169,22 @@ msgstr "Informationen"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Invoicing unit"
-msgstr "Invoicing unit"
+msgstr "Rechnungsverfahren"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Item outside SLA"
-msgstr "Item outside SLA"
+msgstr "Arbeiten, die nicht im SLA inbegriffen sind"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Km (between AbAKUS Eupen and the client)"
-msgstr "Km (between AbAKUS Eupen and the client)"
+msgstr "Anzahl Km (zwischen AbAKUS Eupen und dem Kunden)"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Less than"
-msgstr "Less than"
+msgstr "Unter"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
@@ -194,27 +194,27 @@ msgstr "Limitation of liability"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Low"
-msgstr "Low"
+msgstr "niedrig"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Minimum down-payment per year"
-msgstr "Minimum down-payment per year"
+msgstr "Mindestanzahlung pro Jahr"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Minimum per year"
-msgstr "Minimum per year"
+msgstr "Mindestbetrag pro Jahr"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Minimum time invoiced per intervention"
-msgstr "Minimum time invoiced per intervention"
+msgstr "Mindestzeit, die per Intervention berechnet wird "
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Monday to Friday from 8:30 a.m. to 5:30 p.m."
-msgstr "Monday to Friday from 8:30 a.m. to 5:30 p.m."
+msgstr "Montag bis Freitag von 8:30 Uhr bis 17:30 Uhr"
 
 #. module: contract_sale_signable
 #: field:account.analytic.account,monitoring:0
@@ -225,7 +225,7 @@ msgstr "Monitoring"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "More than 135 Km"
-msgstr "More than 135 Km"
+msgstr "Mehr als 135 Km"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -255,17 +255,17 @@ msgstr "Normal"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "OD : technician on site"
-msgstr "OD : technician on site"
+msgstr "OD : Techniker vor Ort"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Office hours"
-msgstr "Office hours"
+msgstr "Geschäftszeiten"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Only for customers with SLA or on appointment. Except otherwise agreed in writing, applicable rates are increased by 150% after 10 PM and 200% on Sundays."
-msgstr "Only for customers with SLA or on appointment. Except otherwise agreed in writing, applicable rates are increased by 150% after 10 PM and 200% on Sundays."
+msgstr "Nur für Kunden mit SLA oder auf Termin. Die Tarife steigen nach 22:00 Uhr auf 150 % und an Sonntagen auf 200 %."
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -275,7 +275,7 @@ msgstr "Einstellungen"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Oral order is sufficient"
-msgstr "Oral order is sufficient"
+msgstr "eine mündliche Auftragsanfrage genügt "
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -285,7 +285,7 @@ msgstr "Our general terms and conditions are attached and are considered well kn
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Outside business hours"
-msgstr "Outside business hours"
+msgstr "Außerhalb der Geschäftszeiten"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -300,12 +300,12 @@ msgstr "Payment - adjustment of prices - termination times"
 #. module: contract_sale_signable
 #: field:account.analytic.account,preventive_maintenance:0
 msgid "Preventive Maintenance"
-msgstr "Preventive Maintenance"
+msgstr " präventive Instandhaltung "
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Preventive maintenance"
-msgstr "Preventive maintenance"
+msgstr "präventive Instandhaltung"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
@@ -322,12 +322,12 @@ msgstr "Preventive maintenance concerns the replacement, the revision, or the re
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Price by displacement"
-msgstr "Price by displacement"
+msgstr "Fahrtkosten"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Price per travel"
-msgstr "Price per travel"
+msgstr "Preis pro Anfahrt"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -342,7 +342,7 @@ msgstr "Priorität"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Rates"
-msgstr "Rates"
+msgstr "Tarife"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
@@ -360,12 +360,12 @@ msgstr "Rates will be adjusted at the Belgian index once a year.\n"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Reaction time (SLA)"
-msgstr "Reaction time (SLA)"
+msgstr "Reaktionszeit (SLA)"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Reaction time (compliance: 85%)"
-msgstr "Reaction time (compliance: 85%)"
+msgstr "Reaktiosnzeit (Einhaltung: 85%)"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -375,12 +375,12 @@ msgstr "Reaktionszeit in Minuten"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Request for support"
-msgstr "Request for support"
+msgstr "Supportanfrage"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "SD : per email or per telephone"
-msgstr "SD : per email or per telephone"
+msgstr "SD : per E-Mail oder per Telefon"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -390,12 +390,12 @@ msgstr "SLA"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Service Contract - IT Services"
-msgstr "Service Contract - IT Services"
+msgstr "Dienstleistungsvertrag – IT-Dienstleistungen"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Service Desk / +32.87 59 35 58 or per Email at support@abakusitsolutions.eu"
-msgstr "Service Desk / +32.87 59 35 58 or per Email at support@abakusitsolutions.eu"
+msgstr "Service Desk /unter der Telefonnummer: +32.87 59 35 58 or oder per E-Mail an support@abakusitsolutions.eu"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -410,12 +410,12 @@ msgstr "Dienstleistungstyp"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Signature and date"
-msgstr "Signature and date"
+msgstr "Unterschrift und Datum"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
 msgid "Special conditions"
-msgstr "Special conditions"
+msgstr "spezielle Bedingungen"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.contract_conditions_document
@@ -470,17 +470,17 @@ msgstr "Ticket"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Travel expenses"
-msgstr "Travel expenses"
+msgstr "Anfahrtskosten"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Urgent"
-msgstr "Urgent"
+msgstr "Dringend"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "Yes"
-msgstr "Yes"
+msgstr "Ja"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -490,12 +490,12 @@ msgstr "abakusBackground"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "day(s)"
-msgstr "day(s)"
+msgstr "Tag(e)"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "from"
-msgstr "from"
+msgstr "Vom"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -505,7 +505,7 @@ msgstr "min"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "month(s)"
-msgstr "month(s)"
+msgstr "Monat(e)"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -520,15 +520,14 @@ msgstr "text-right abakusBackground"
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "week(s)"
-msgstr "week(s)"
+msgstr "Woche(n)"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "year(s)"
-msgstr "year(s)"
+msgstr "Jahr(e)"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
 msgid "€ every"
-msgstr "€ every"
-
+msgstr "€ per"
