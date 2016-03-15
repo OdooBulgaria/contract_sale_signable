@@ -254,8 +254,8 @@ msgstr "Normal"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
-msgid "OD : technician on site"
-msgstr "OD : Techniker vor Ort"
+msgid "OS: technician on site"
+msgstr "OS : Techniker vor Ort"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
@@ -379,8 +379,8 @@ msgstr "Supportanfrage"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
-msgid "SD : per email or per telephone"
-msgstr "SD : per E-Mail oder per Telefon"
+msgid "SD: per email or per telephone"
+msgstr "SD: per E-Mail oder per Telefon"
 
 #. module: contract_sale_signable
 #: view:website:contract_sale_signable.signable_contract_document
