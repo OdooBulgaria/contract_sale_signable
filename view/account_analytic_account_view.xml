@@ -3,16 +3,18 @@
 	<data>      
        <record model="ir.ui.view" id="view_account_analytic_account_sla">
            <field name="name">account_analytic_account_sla</field>
-            <field name="model">account.analytic.account</field>
-            <field name="inherit_id" ref="account_analytic_account_improvements.account_analytic_account_improvements"/>
+            <field name="model">sale.subscription</field>
+            <field name="inherit_id" ref="account_analytic_account_improvements.sale_subscription_contract_improvements"/>
             <field name="arch" type="xml">
-                <field name="on_site_distance_in_km" position="after">
-                    <field name="preventive_maintenance"/>
-                    <field name="automatic_reneval_of_license"/>
-                    <field name="monitoring"/>
-                    <field name="backup"/>  
-                    <field name="agreement_date"/> 
-                </field>
+                <xpath expr="//group[@id='invoicing_support_contract']" position="after">
+                    <group string="Contractual information" id="contractual_info">
+                        <field name="preventive_maintenance"/>
+                        <field name="automatic_reneval_of_license"/>
+                        <field name="monitoring"/>
+                        <field name="backup"/>
+                        <field name="agreement_date"/>
+                    </group>
+                </xpath>
             </field>
        </record>
     </data>
