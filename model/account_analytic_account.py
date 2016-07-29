@@ -13,7 +13,7 @@ def RepresentsInt(s):
 
 
 class account_analytic_account_signable(models.Model):
-    _inherit = ['account.analytic.account']
+    _inherit = ['sale.subscription']
     
     agreement_date = fields.Date(string='Agreement date', default=date.today().strftime('%Y-%m-%d'))
     preventive_maintenance = fields.Boolean(string="Preventive Maintenance", default=False)
@@ -27,7 +27,7 @@ class account_analytic_account_signable(models.Model):
     def is_tariff(self, account_id, product_id):
         cr = self.env.cr
         uid = self.env.user.id
-        account_analytic_account_obj = self.pool.get('account.analytic.account')
+        account_analytic_account_obj = self.pool.get('sale.subscription')
         account_analytic_accounts = account_analytic_account_obj.search(cr, uid, [('id','=',account_id)])
         if account_analytic_accounts:
             account_analytic_account = account_analytic_account_obj.browse(cr, uid, account_analytic_accounts[0])
@@ -41,7 +41,7 @@ class account_analytic_account_signable(models.Model):
     def is_travel_cost(self, account_id, product_id):
         cr = self.env.cr
         uid = self.env.user.id
-        account_analytic_account_obj = self.pool.get('account.analytic.account')
+        account_analytic_account_obj = self.pool.get('sale.subscription')
         account_analytic_accounts = account_analytic_account_obj.search(cr, uid, [('id','=',account_id)])
         if account_analytic_accounts:
             account_analytic_account = account_analytic_account_obj.browse(cr, uid, account_analytic_accounts[0])

@@ -4,11 +4,19 @@
 		<report 
 			id="contract_abakus_signable"
 			string="Contract Signable"
-			model="account.analytic.account" 
+			model="sale.subscription"
 			report_type="qweb-pdf"
 			file="contract_sale_signable" 
 			name="contract_sale_signable.signable_contract"
 		/>
+
+        <template id="signable_contract">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="contract_sale_signable.signable_contract_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
         
 		<template id="signable_contract_document">
 			<t t-name="contract_sale_signable.signable_contract_document">
@@ -63,15 +71,15 @@
                                     <t t-if="o.is_tariff(o.id,product['product_id'])"><t t-set="classcontent">text-right abakusBackground</t></t>
                                     <tr t-att="{ 'class' : classcontent }">
                                         <td class="text-left"><span t-esc="product['name']"/></td>
-                                        <td><span t-esc="o.format_decimal_number(product['price'])"/> €</td>
+                                        <td><span t-esc="product['price']"/> €</td>
                                         <td>                                
                                             <t t-if="product['yearly_minimum']==0">None</t>
                                             <t t-if="product['yearly_minimum']&gt;0"><span t-esc="product['yearly_minimum']"/> Hours</t>
                                         </td>
                                         <td>
                                             <t t-if="product['monthly_installment']==0">None</t>
-                                            <t t-if="product['monthly_installment']&lt;100 and product['monthly_installment']&gt;0">1x yearly <span t-esc="o.format_decimal_number(product['price']*product['yearly_minimum'])"/> €</t>
-                                            <t t-if="product['monthly_installment']&gt;100"><span t-esc="o.format_decimal_number(product['monthly_installment'])"/> €</t>
+                                            <t t-if="product['monthly_installment']&lt;100 and product['monthly_installment']&gt;0">1x yearly <span t-esc="product['price'] * product['yearly_minimum']"/> €</t>
+                                            <t t-if="product['monthly_installment']&gt;100"><span t-esc="product['monthly_installment']"/> €</t>
                                         </td>
                                         <td>
                                             <t t-if="product['sla']">Yes</t>
@@ -101,11 +109,11 @@
                                         <t t-if="product['price']&gt;0">
                                             <t t-if="product['km']==999">
                                                 <td>Less than <span t-esc="product['km']"/> Km</td>
-                                                <td><span t-esc="o.format_decimal_number(product['price'])"/> €</td>
+                                                <td><span t-esc="product['price']"/> €</td>
                                             </t>
                                             <t t-if="product['km']!=999">
                                                 <td>Less than <span t-esc="product['km']"/> Km</td>
-                                                <td colspan="3"><span t-esc="o.format_decimal_number(product['price'])"/> €</td>
+                                                <td colspan="3"><span t-esc="product['price']"/> €</td>
                                             </t>
                                         </t>
                                         <t t-if="product['km']==999">
@@ -115,7 +123,7 @@
                                             </t>
                                             <t t-if="is_travel_cost">
                                                 <t t-set="travel_cost" t-value="o.on_site_product.lst_price*o.on_site_distance_in_km"/>
-                                                <td><span t-esc="o.format_decimal_number(travel_cost)"/> €</td>
+                                                <td><span t-esc="travel_cost"/> €</td>
                                             </t>
                                         </t>
                                     </tr> 
@@ -298,8 +306,8 @@
                                     <th>Contract expiration date</th>
                                 </tr>
                                 <tr>
-                                    <td><span t-esc="o.format_decimal_number(o.timesheet_product_price)" /> €</td>
-                                    <td><span t-esc="o.format_decimal_number(travel_cost)" /> €</td>
+                                    <td><span t-esc="o.timesheet_product_price" /> €</td>
+                                    <td><span t-esc="travel_cost" /> €</td>
                                     
                                     <t t-set="recurring_type"></t>
                                     <t t-if="o.recurring_rule_type == 'daily'"><t t-set="recurring_type">day(s)</t></t>
@@ -307,9 +315,16 @@
                                     <t t-if="o.recurring_rule_type == 'monthly'"><t t-set="recurring_type">month(s)</t></t>
                                     <t t-if="o.recurring_rule_type == 'yearly'"><t t-set="recurring_type">year(s)</t></t>
                                     
-                                    <td><span t-esc="o.format_decimal_number(o.recurring_invoice_line_ids[0].price_subtotal)" /> € every <span t-field="o.recurring_interval" /> <span t-esc="recurring_type"/></td>
+                                    <td><span t-esc="(o.recurring_invoice_line_ids[0].price_subtotal)" /> € every <span t-field="o.recurring_interval" /> <span t-esc="recurring_type"/></td>
                                     <td><span t-esc="o.get_date_from_string_format(o.date_start,'%Y-%m-%d','%d-%m-%Y')" /></td>
-                                    <td><span t-esc="o.get_date_from_string_format(o.date,'%Y-%m-%d','%d-%m-%Y')" /></td>
+                                    <td>
+                                        <t t-if="o.date">
+                                            <span t-esc="o.get_date_from_string_format(o.date,'%Y-%m-%d','%d-%m-%Y')" />
+                                        </t>
+                                        <t t-if="o.date==False">
+                                            /
+                                        </t>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -375,6 +390,8 @@
                                 Printed twice at : .................... on the date ....................
                             </p>
                         </div>
+
+                        <p style="page-break-before:always;"> </p>
                         
                         <!-- Special conditions -->
                         <div style="page-break-inside:avoid; text-align: justify;">
@@ -385,13 +402,5 @@
 				</t>
 			</t>
 		</template>
-       
-		<template id="signable_contract">
-            <t t-call="report.html_container">
-                <t t-foreach="doc_ids" t-as="doc_id">
-                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'contract_sale_signable.signable_contract_document')"/>
-                </t>
-            </t>
-        </template>
 	</data>
 </openerp>
