@@ -1,6 +1,6 @@
 ﻿{
     'name': "AbAKUS signable contract",
-    'version': '1.0',
+    'version': '9.0.1.0',
     'depends': [
         'report',
         'contract_timesheet_activities_on_site_management',
