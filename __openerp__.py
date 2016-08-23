@@ -3,7 +3,6 @@
     'version': '9.0.1.0',
     'depends': [
         'report',
-        'contract_timesheet_activities_on_site_management',
         'account_analytic_account_improvements',
         'sla',
         'contract_report'
