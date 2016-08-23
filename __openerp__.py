@@ -5,7 +5,6 @@
         'report',
         'account_analytic_account_improvements',
         'sla',
-        'contract_report'
     ],
     'author': "Bernard DELHEZ, AbAKUS it-solutions SARL",
     'website': "http://www.abakusitsolutions.eu",
