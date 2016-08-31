@@ -1,6 +1,6 @@
 ﻿{
     'name': "AbAKUS signable contract",
-    'version': '9.0.1.0',
+    'version': '9.0.1.1',
     'depends': [
         'report',
         'account_analytic_account_improvements',
