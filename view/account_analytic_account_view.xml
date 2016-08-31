@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="account_analytic_account_improvements.sale_subscription_contract_improvements"/>
             <field name="arch" type="xml">
                 <xpath expr="//group[@id='invoicing_support_contract']" position="after">
-                    <group string="Contractual information" id="contractual_info">
+                    <group string="Contractual information" id="contractual_info"  attrs="{'invisible': [('contract_type', 'NOT LIKE', 'BL')]}">
                         <field name="preventive_maintenance"/>
                         <field name="automatic_reneval_of_license"/>
                         <field name="monitoring"/>
