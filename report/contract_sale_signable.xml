@@ -392,12 +392,10 @@
                         </div>
 
                         <p style="page-break-before:always;"> </p>
-                        
-                        <!-- Special conditions -->
-                        <div style="page-break-inside:avoid; text-align: justify;">
-                            <t t-call="contract_sale_signable.contract_conditions"/>
-                        </div>
-                        
+                    </div>
+		    <!-- Special conditions -->
+                    <div style="page-break-inside:avoid; text-align: justify;">
+                        <t t-call="contract_sale_signable.contract_conditions"/>
                     </div>
 				</t>
 			</t>
